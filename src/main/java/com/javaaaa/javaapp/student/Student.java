@@ -3,6 +3,7 @@ package com.javaaaa.javaapp.student;
 import java.time.LocalDate;
 import java.time.Period;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,18 +16,18 @@ import jakarta.persistence.Transient;
 @Table
 public class Student {
     @Id
-    @SequenceGenerator(name = "student_sequence", sequenceName = "student_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_sequence")
+    @SequenceGenerator(name = "student_sequence", sequenceName = "student_sequence", allocationSize = 1)
 
     private Integer id;
     private String name;
     private LocalDate dateOfBirth;
     @Transient
     private Integer age; // transient means no need to be a column
+    @Column(nullable = true)
     private String email;
 
     public Student() {
-
     }
 
     public Student(String name, LocalDate dateOfBirth, String email) {
